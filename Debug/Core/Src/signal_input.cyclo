@@ -1,0 +1,2 @@
+../Core/Src/signal_input.c:7:6:signal_input_init	1
+../Core/Src/signal_input.c:12:7:signal_input_measure_frequency	1
