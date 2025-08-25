@@ -1,2 +1,2 @@
 # RAMtech
-A simulated research group project for MTU EE3174
+This is a simulated research group project for Michigan Tech's EE3174 lab.
