@@ -1,0 +1,27 @@
+=================================
+ Pinout Assignment
+=================================
+
+LCD
+---------------------------------
+PA0  -> Button Input
+PB9  -> I2C SDA
+PB8  -> I2C SCL
+
+Thermocouple
+---------------------------------
+PA1  -> Temperature Input
+
+Tilt Switch
+---------------------------------
+PA10 -> Switch Input
+
+Signal Input
+---------------------------------
+PA4  -> Signal Input
+
+---------------------------------
+Power Connections
+---------------------------------
+All peripherals VCC -> 3.3V
+All peripherals GND -> Common Ground
