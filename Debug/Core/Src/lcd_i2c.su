@@ -1,8 +1,0 @@
-../Core/Src/lcd_i2c.c:15:13:lcd_send_command	32	static
-../Core/Src/lcd_i2c.c:24:13:lcd_send_data	32	static
-../Core/Src/lcd_i2c.c:37:6:RGB_LCD_Init	40	static
-../Core/Src/lcd_i2c.c:68:6:RGB_LCD_Clear	16	static
-../Core/Src/lcd_i2c.c:77:6:RGB_LCD_SetCursor	24	static
-../Core/Src/lcd_i2c.c:86:6:RGB_LCD_SetRGB	32	static
-../Core/Src/lcd_i2c.c:101:6:RGB_LCD_Print	16	static
-../Core/Src/lcd_i2c.c:112:6:RGB_LCD_Printf	92	static

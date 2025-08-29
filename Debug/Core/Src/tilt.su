@@ -1,2 +1,0 @@
-../Core/Src/tilt.c:12:6:tilt_init	32	static
-../Core/Src/tilt.c:24:6:detect_tilt	16	static
