@@ -17,25 +17,26 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "main.h"
 #include "button_input.h"
-#include "lcd_i2c.h"
-#include "accelerometer.h"
-#include "rtd_sensor.h"
-#include "tilt.h"
+#include "temp_meas.h"
+#include "freq_meas.h"
+#include "lcd.h"
 #include "custom_chars.h"
-#include "signal_input.h"
+#include "tilt.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 typedef enum {
     MENU_MAIN,
-    MENU_SENSOR_RTD,
-    MENU_SIGNAL_INPUT
+	MENU_TEMP,
+	MENU_FREQ
 } MenuState;
 /* USER CODE END PTD */
 
@@ -130,6 +131,7 @@ int main(void)
    RGB_LCD_SetRGB(&lcd, 0, 128, 255); // Light blue
    RGB_LCD_Clear(&lcd);
 
+   // Initialize state and measurement variables
    MenuState currentMenu = MENU_MAIN;
    Button last_click = NONE;
    float t_temp;
@@ -144,59 +146,77 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  // read the latest button push
   	  last_click = GetButton();
+
+  	  // check the orientation of the device
   	  //flip = detect_tilt();
   	  flip = false;
 
+  	  // Based on the button push, display the correct screen on the LCD
   			switch (currentMenu) {
   				case MENU_MAIN:
+  					// clear display
   					RGB_LCD_Clear(&lcd);
 
   					if (flip == false){
+  						// print right side up text for the main menu
   						RGB_LCD_SetCursor(&lcd, 0, 0);
   						RGB_LCD_Print(&lcd, "MAIN MENU");
   					}
   					else if(flip == true){
-  						// flip text
+  						// print upside down text for the main menu
 
   					}
 
-  					if (last_click == BUTTON_UP) currentMenu = MENU_SENSOR_RTD;
-  					if (last_click == BUTTON_DOWN) currentMenu = MENU_SIGNAL_INPUT;
+  					// screen change options for main menu
+  					if (last_click == BUTTON_UP) currentMenu = MENU_TEMP;
+  					if (last_click == BUTTON_DOWN) currentMenu = MENU_FREQ;
   					break;
 
-  				case MENU_SENSOR_RTD: {
-  					t_temp = rtd_read_temperature_f();
+  				case MENU_TEMP: {
+  					// clear display
   					RGB_LCD_Clear(&lcd);
 
+  					// measure temperature
+  					t_temp = rtd_read_temperature_f();
+
   					if (flip == false){
+  						// print right side up text for the temperature screen
   						RGB_LCD_SetCursor(&lcd, 0, 0);
   						RGB_LCD_Printf(&lcd, "TEMP: %.0f F", t_temp);
   						RGB_LCD_SetCursor(&lcd, 0, 1);
   						RGB_LCD_Print(&lcd,"HIT LEFT TO EXIT");
   					}
   					else if(flip == true){
-  						// flip text
+  						// print upside down text for the temperature screen
 
   					}
 
+  					// screen change options for temperature screen
   					if (last_click == BUTTON_LEFT) currentMenu = MENU_MAIN;
   					break;
   				}
 
-  				case MENU_SIGNAL_INPUT: {
-  					freq = signal_input_measure_frequency();
+  				case MENU_FREQ: {
+  					// clear display
   					RGB_LCD_Clear(&lcd);
+
+  					// measure frequency
+  					freq = measure_frequency();
+
   					if (flip == false){
+  						// print right side up text for the frequency screen
   						RGB_LCD_SetCursor(&lcd, 0, 0);
   						RGB_LCD_Printf(&lcd, "FREQ: %.0f Hz", freq);
   						RGB_LCD_SetCursor(&lcd, 0, 1);
   						RGB_LCD_Print(&lcd,"HIT LEFT TO EXIT");
   					}
   					else if(flip == true){
-  						// flip text
+  						// print upside down text for the frequency screen
   					}
 
+  					// screen change options for frequency screen
   					if (last_click == BUTTON_LEFT) currentMenu = MENU_MAIN;
   					break;
   				}

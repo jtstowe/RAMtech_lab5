@@ -1,5 +1,5 @@
-#ifndef LCD_I2C_H
-#define LCD_I2C_H
+#ifndef LCD_H
+#define LCD_H
 
 #include "stm32l1xx_hal.h"
 #include <stdint.h>

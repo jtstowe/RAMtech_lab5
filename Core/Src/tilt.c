@@ -20,7 +20,7 @@ void tilt_init(void)
     HAL_GPIO_Init(TILT_GPIO_PORT, &GPIO_InitStruct);
 }
 
-// Returns 1 if tilted, 0 if not tilted
+// Returns 1 if tilted (flipped), 0 if not tilted (flipped)
 bool detect_tilt(void) {
 
     // 1. Debounce: take multiple samples

@@ -14,13 +14,16 @@ Button GetButton(void) {
     HAL_ADC_Start(&hadc);
     HAL_ADC_PollForConversion(&hadc, HAL_MAX_DELAY);
 
+    // Take 10 samples
     for (int i = 0; i < 10; i++) {
         sum += HAL_ADC_GetValue(&hadc);
         HAL_Delay(2); // small delay to avoid reading the exact same sample
     }
 
+    // Calculate average raw ADC value
     uint32_t avg = sum / 10;
 
+    // determine button push
     if (avg < 50) return BUTTON_RIGHT;
     else if (avg < 1100) return BUTTON_UP;
     else if (avg < 1900) return BUTTON_DOWN;

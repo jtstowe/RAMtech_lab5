@@ -1,4 +1,4 @@
-#include "lcd_i2c.h"
+#include "lcd.h"
 #include <string.h>
 #include <stdbool.h>
 

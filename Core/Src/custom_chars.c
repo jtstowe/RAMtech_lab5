@@ -6,10 +6,10 @@
  */
 
 
+#include <lcd.h>
 #include "custom_chars.h"
 #include <math.h>
 #include <stdint.h>
-#include "lcd_i2c.h"
 
 // ─────────── Normal Custom Glyphs ───────────
 const uint8_t char_degC[8] = {

@@ -8,7 +8,7 @@
 #ifndef INC_CUSTOM_CHARS_H_
 #define INC_CUSTOM_CHARS_H_
 
-#include "lcd_i2c.h"
+#include <lcd.h>
 #include <stdint.h>
 
 // ─────────── Normal Custom Glyphs ───────────
